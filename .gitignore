@@ -1,0 +1,5 @@
+.idea
+target
+.ensime_cache
+.ensime
+movie_metadata_*.csv
