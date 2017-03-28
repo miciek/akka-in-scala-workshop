@@ -7,7 +7,8 @@ The objective of the workshop is to get some theoretical and practical overview 
   * Scala features
   * Actor model
   * Actors in Akka
-  * Akka basics
+  * Actor-based applications
+  * Akka internals
   * Testing actors
   * Supervision strategy and fault tolerance
   * *(optionally)* [Reactive Manifesto](http://www.reactivemanifesto.org/) and microservices
@@ -18,8 +19,7 @@ The objective of the workshop is to get some theoretical and practical overview 
   * No prior Akka experience is required.
 
 ## Workshop details
- 
-We are going to implement "Hot Or Not Movie" game which is a comparison-based rating system..
+We are going to implement *"Movie: Hot Or Not?"* game which is a comparison-based rating system.
  
 ### Scala features
   * Java `List` vs Scala `List`
@@ -31,7 +31,44 @@ We are going to implement "Hot Or Not Movie" game which is a comparison-based ra
   * Pattern matching
   * `Random`
   
+Exercise: implement [HotOrNotApp.scala](src/main/scala/com/michalplachta/workshop/akka/movies/HotOrNotApp.scala)
+  
 ### Actor model
+  * Asynchronous programming
+  * Actors as entities with state
+  * Events and messages
+  
+Exercise: draw model of asynchronous version of `HotOrNotApp`
+  
+### Actors in Akka
+  * `Actor` class
+  * `receive` method
+  * Protocol in companion object
+  * Sending messages to other actors using `!`
+  * `sender`
+  * Holding mutable state using `var`
+  * Creating actors using `actorOf` and `Props`
+  * `preStart`
+  
+Exercise: implement [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [GameHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/GameHost.scala)
+
+### Actor-based applications
+  * `ActorSystem`
+  * Asking other actors using `?` (`akka.pattern.ask`)
+  * `Timeout` and `Duration`
+  * `Future`s in Scala
+  * `ExecutionContext`
+
+Exercise: implement [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop/akka/movies/HotOrNotAsyncApp.scala)
+
+### Akka internals
+  * `ActorLogging` and logging thread names
+  * Thread analysis using `jvisualvm`
+  * Dispatchers in Akka
+  * Naming actors
+  * `PoisonPill`
+  
+Exercise: fix [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop/akka/movies/HotOrNotAsyncApp.scala), [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [GameHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/GameHost.scala)
 
 ## Acknowledgments
 This project uses data from [IMDB 5000 Movie Dataset](https://www.kaggle.com/deepmatrix/imdb-5000-movie-dataset).
