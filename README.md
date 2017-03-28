@@ -19,8 +19,19 @@ The objective of the workshop is to get some theoretical and practical overview 
   * No prior Akka experience is required.
 
 ## Workshop details
-We are going to implement *"Movie: Hot Or Not?"* game which is a comparison-based rating system.
- 
+We are going to implement *"Movie: Hot Or Not?"* application which is a comparison-based rating system. The sample output of the application:
+
+```
+ > The Transporter (a) or The Missing Person (b) or ? (q to quit)
+You chose The Transporter
+ > The Transporter (a) or Malcolm X (b) or ? (q to quit)
+a
+You chose The Transporter
+ > The Transporter (a) or The Jungle Book 2 (b) or ? (q to quit)
+?
+You chose nothing
+```
+
 ### Scala features
   * Java `List` vs Scala `List`
   * Immutable collections
@@ -67,8 +78,22 @@ Exercise: implement [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/wo
   * Dispatchers in Akka
   * Naming actors
   * `PoisonPill`
+  * Worker actors using `RoundRobinPool`
   
 Exercise: fix [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop/akka/movies/HotOrNotAsyncApp.scala), [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [GameHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/GameHost.scala)
+  
+### Testing actors
+  * Unit testing using `scalatest`
+  * `WordSpec` flavor 
+  * `Matchers`
+  * Asynchronous integration testing using `TestKit` and `scalatest`
+  * `WordSpecLike`
+  * `BeforeAndAfterAll`
+  * Asserting using `expectMsg` and `ImplicitSender`
+  * Asserting using `expectMsgPF`
+  * Making the code testable using parametrized `Props`
+  
+ Exercise: implement [MovieDataSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieDataSpec.scala), [MovieMetadataParserSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParserSpec.scala) and [GameHostSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/GameHostSpec.scala)
 
 ## Acknowledgments
 This project uses data from [IMDB 5000 Movie Dataset](https://www.kaggle.com/deepmatrix/imdb-5000-movie-dataset).

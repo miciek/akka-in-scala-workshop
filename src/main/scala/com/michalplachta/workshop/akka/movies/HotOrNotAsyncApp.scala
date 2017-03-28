@@ -5,6 +5,8 @@ import akka.pattern.ask
 import akka.util.Timeout
 import com.michalplachta.workshop.akka.movies.GameHost.{ Game, SpawnGame }
 import com.michalplachta.workshop.akka.movies.MovieData.Movie
+import GameHost.Game
+import MovieData.Movie
 
 import scala.concurrent.Future
 import scala.util.{ Failure, Success }
@@ -13,7 +15,7 @@ import scala.concurrent.duration._
 
 object HotOrNotAsyncApp extends App {
   val system = ActorSystem("HotOrNot")
-  val host = system.actorOf(GameHost.props, "gameHost")
+  val host = system.actorOf(GameHost.props(MovieMetadataParsing.parseMoviesFromResource), "gameHost")
 
   def play(previousWinner: Option[Movie]): Unit = {
     implicit val timeout: Timeout = 5.seconds
