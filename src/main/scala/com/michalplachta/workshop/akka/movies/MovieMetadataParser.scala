@@ -1,9 +1,7 @@
 package com.michalplachta.workshop.akka.movies
 
-import akka.actor.{ Actor, ActorLogging, PoisonPill, Props }
-import com.michalplachta.workshop.akka.movies.MovieData.Movie
+import akka.actor.{ Actor, ActorLogging, Props }
 import com.michalplachta.workshop.akka.movies.MovieMetadataParser.{ Parse, ParsedMovies }
-import MovieData.Movie
 
 class MovieMetadataParser(parse: String ⇒ List[Movie]) extends Actor with ActorLogging {
   def receive: Receive = {

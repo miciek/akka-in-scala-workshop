@@ -2,7 +2,6 @@ package com.michalplachta.workshop.akka.movies
 
 import akka.actor.ActorSystem
 import akka.testkit.{ImplicitSender, TestKit}
-import com.michalplachta.workshop.akka.movies.MovieData.Movie
 import com.michalplachta.workshop.akka.movies.MovieMetadataParser.{Parse, ParsedMovies}
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 

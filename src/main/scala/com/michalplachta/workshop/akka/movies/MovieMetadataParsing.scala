@@ -1,7 +1,5 @@
 package com.michalplachta.workshop.akka.movies
 
-import MovieData.Movie
-
 import scala.util.Try
 
 object MovieMetadataParsing {

@@ -30,6 +30,9 @@ You chose The Transporter
  > The Transporter (a) or The Jungle Book 2 (b) or ? (q to quit)
 ?
 You chose nothing
+ > The Transporter (a) or The Matrix (b) or ? (q to quit)
+b
+You chose The Matrix
 ```
 
 ### Scala features
@@ -61,7 +64,7 @@ Exercise: draw model of asynchronous version of `HotOrNotApp`
   * Creating actors using `actorOf` and `Props`
   * `preStart`
   
-Exercise: implement [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [GameHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/GameHost.scala)
+Exercise: implement [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [SessionHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/SessionHost.scala)
 
 ### Actor-based applications
   * `ActorSystem`
@@ -80,7 +83,7 @@ Exercise: implement [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/wo
   * `PoisonPill`
   * Worker actors using `RoundRobinPool`
   
-Exercise: fix [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop/akka/movies/HotOrNotAsyncApp.scala), [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [GameHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/GameHost.scala)
+Exercise: fix [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop/akka/movies/HotOrNotAsyncApp.scala), [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [SessionHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/SessionHost.scala)
   
 ### Testing actors
   * Unit testing using `scalatest`
@@ -93,7 +96,10 @@ Exercise: fix [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop
   * Asserting using `expectMsgPF`
   * Making the code testable using parametrized `Props`
   
- Exercise: implement [MovieDataSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieDataSpec.scala), [MovieMetadataParserSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParserSpec.scala) and [GameHostSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/GameHostSpec.scala)
+ Exercise: implement [MovieSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieSpec.scala), [MovieMetadataParserSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParserSpec.scala) and [SessionHostSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/SessionHostSpec.scala)
+
+## Running the application
+Before launching the application you need to generate `csv` files. Please run [generate_movie_data.sh](generate_movie_data.sh) script first. Then run the app by executing `sbt run`.
 
 ## Acknowledgments
 This project uses data from [IMDB 5000 Movie Dataset](https://www.kaggle.com/deepmatrix/imdb-5000-movie-dataset).
