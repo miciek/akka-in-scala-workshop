@@ -13,7 +13,7 @@ import scala.concurrent.duration._
 
 object HotOrNotAsyncApp extends App {
   val system = ActorSystem("HotOrNot")
-  val host = system.actorOf(GameHost.props)
+  val host = system.actorOf(GameHost.props, "gameHost")
 
   def play(previousWinner: Option[Movie]): Unit = {
     implicit val timeout: Timeout = 5.seconds

@@ -11,11 +11,14 @@ resolvers += Resolver.jcenterRepo
 libraryDependencies ++= {
   val akkaV = "2.4.17"
   val configV = "1.3.1"
-  val scalatest = "3.0.1"
+  val scalatestV = "3.0.1"
+  val logbackV = "1.1.5"
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akkaV,
     "com.typesafe" % "config" % configV,
-    "org.scalatest" %% "scalatest" % scalatest % Test,
+    "com.typesafe.akka" %% "akka-slf4j" % akkaV,
+    "ch.qos.logback" % "logback-classic" % logbackV,
+    "org.scalatest" %% "scalatest" % scalatestV % Test,
     "com.typesafe.akka" %% "akka-testkit" % akkaV % Test
   )
 }

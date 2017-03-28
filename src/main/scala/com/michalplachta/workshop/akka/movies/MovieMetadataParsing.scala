@@ -18,6 +18,6 @@ object MovieMetadataParsing {
         val cols = line.split(",").map(_.trim)
         Movie(cols(movieTitleIndex), Try(cols(scoreIndex).toDouble).toOption)
       }.toSet
-    } else Set.empty
+    } else Set.empty[Movie]
   }
 }

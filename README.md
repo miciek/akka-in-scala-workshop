@@ -30,6 +30,8 @@ We are going to implement "Hot Or Not Movie" game which is a comparison-based ra
   * `StdIn`
   * Pattern matching
   * `Random`
+  
+### Actor model
 
 ## Acknowledgments
 This project uses data from [IMDB 5000 Movie Dataset](https://www.kaggle.com/deepmatrix/imdb-5000-movie-dataset).
