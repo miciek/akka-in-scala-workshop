@@ -1,7 +1,7 @@
 # Akka in Scala workshop
 
 ## Abstract
-The objective of the workshop is to get some theoretical and practical overview of the actor model and asynchronous programming. You will learn how to program real applications using [Akka](http://akka.io/) and [Scala](https://www.scala-lang.org/). Throughout the day we will switch between quick introductions of the core features and longer step-by-step exercises.
+The objective of the workshop is to get some theoretical and practical overview of the actor model and asynchronous programming. You will learn how to program real applications using [Akka](http://akka.io/) and [Scala](https://www.scala-lang.org/). Throughout the day we will switch between quick introductions of the core features and longer step-by-step exercises. This will expose you to all features and tools needed to create and maintain production applications.
 
 ## Table of Contents
   * Scala features
@@ -10,7 +10,7 @@ The objective of the workshop is to get some theoretical and practical overview 
   * Actor-based applications
   * Akka internals
   * Testing actors
-  * Supervision strategy and fault tolerance
+  * Fault tolerance
   * *(optionally)* [Reactive Manifesto](http://www.reactivemanifesto.org/) and microservices
   * *(optionally)* Overview of more advanced components and features  (persistence and remoting)
 
@@ -86,17 +86,26 @@ Exercise: implement [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/wo
 Exercise: fix [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop/akka/movies/HotOrNotAsyncApp.scala), [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [SessionHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/SessionHost.scala)
   
 ### Testing actors
+  * Actors are accidental complexity 
   * Unit testing using `scalatest`
   * `WordSpec` flavor 
   * `Matchers`
   * Asynchronous integration testing using `TestKit` and `scalatest`
-  * `WordSpecLike`
+  * `WordSpecLike` flavor
   * `BeforeAndAfterAll`
   * Asserting using `expectMsg` and `ImplicitSender`
   * Asserting using `expectMsgPF`
   * Making the code testable using parametrized `Props`
   
  Exercise: implement [MovieSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieSpec.scala), [MovieMetadataParserSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParserSpec.scala) and [SessionHostSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/SessionHostSpec.scala)
+
+### Fault tolerance
+  * What happens when `child` throws a `Throwable`?
+  * `SupervisorStrategy`: `OneForOneStrategy`, `AllForOneStrategy`
+  * Supervisor directives: `Resume`, `Restart`, `Stop`, `Escalate`
+  * Error kernel pattern
+  
+ Exercise: change [SessionHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/SessionHost.scala) to use `movie_metadata_fail.csv` and implement correct `SupervisorStrategy`.
 
 ## Running the application
 Before launching the application you need to generate `csv` files. Please run [generate_movie_data.sh](generate_movie_data.sh) script first. Then run the app by executing `sbt run`.

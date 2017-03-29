@@ -4,6 +4,10 @@ import akka.actor.{ Actor, ActorLogging, Props }
 import com.michalplachta.workshop.akka.movies.MovieMetadataParser.{ Parse, ParsedMovies }
 
 class MovieMetadataParser(parse: String ⇒ List[Movie]) extends Actor with ActorLogging {
+  override def preStart(): Unit = {
+    log.debug("Starting parser")
+  }
+
   def receive: Receive = {
     case Parse(resourceName) ⇒
       log.debug(s"Starting parsing $resourceName")

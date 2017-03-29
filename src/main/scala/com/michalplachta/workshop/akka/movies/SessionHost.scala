@@ -1,12 +1,16 @@
 package com.michalplachta.workshop.akka.movies
 
-import akka.actor.{ Actor, ActorLogging, ActorRef, Props }
+import akka.actor.SupervisorStrategy.Restart
+import akka.actor.{ Actor, ActorLogging, ActorRef, OneForOneStrategy, Props, SupervisorStrategy }
 import akka.routing.RoundRobinPool
-import com.michalplachta.workshop.akka.movies.SessionHost._
 import com.michalplachta.workshop.akka.movies.MovieMetadataParser.{ Parse, ParsedMovies }
+import com.michalplachta.workshop.akka.movies.SessionHost._
+
+import scala.util.Random
 
 class SessionHost(parseMovieMetadataResource: String ⇒ List[Movie]) extends Actor with ActorLogging {
   var movies: List[Movie] = List.empty
+  var updateResourceName: String = "movie_metadata_fail.csv"
 
   val parser: ActorRef =
     context.actorOf(RoundRobinPool(2).props(MovieMetadataParser.props(parseMovieMetadataResource)), "parser")
@@ -14,6 +18,13 @@ class SessionHost(parseMovieMetadataResource: String ⇒ List[Movie]) extends Ac
   override def preStart(): Unit = {
     log.debug("Loading movies...")
     parser ! Parse("movie_metadata.csv")
+  }
+
+  override def supervisorStrategy: SupervisorStrategy = OneForOneStrategy() {
+    case ex: Exception ⇒
+      log.debug(s"Worker failed with exception ${ex.getMessage}")
+      updateResourceName = "movie_metadata_big.csv" // simulate "fixing" the issue
+      Restart
   }
 
   def receive: Receive = {
@@ -27,7 +38,7 @@ class SessionHost(parseMovieMetadataResource: String ⇒ List[Movie]) extends Ac
       val response = movieA.flatMap(a ⇒ movieB.map(b ⇒ Session(a, b)))
       sender() ! response.getOrElse(CannotSpawnSession)
       log.debug("Updating movies...")
-      parser ! Parse("movie_metadata_big.csv")
+      parser ! Parse(updateResourceName)
   }
 }
 
