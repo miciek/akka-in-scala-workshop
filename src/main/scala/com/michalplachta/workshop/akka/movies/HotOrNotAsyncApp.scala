@@ -3,7 +3,7 @@ package com.michalplachta.workshop.akka.movies
 import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.util.Timeout
-import com.michalplachta.workshop.akka.movies.SessionHost.{ CannotSpawnSession, Session, SpawnSession }
+import com.michalplachta.workshop.akka.movies.SessionHost.{ CannotSpawnSession, Session, SessionSpawnResult, SpawnSession }
 import org.slf4j.LoggerFactory
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -18,7 +18,7 @@ object HotOrNotAsyncApp extends App {
 
   def nextSession(previousWinner: Option[Movie]): Unit = {
     implicit val timeout: Timeout = 5.seconds
-    val futureSession: Future[Any] = host ? SpawnSession(previousWinner)
+    val futureSession: Future[SessionSpawnResult] = (host ? SpawnSession(previousWinner)).mapTo[SessionSpawnResult]
     futureSession.onComplete {
       case Success(response) ⇒
         response match {

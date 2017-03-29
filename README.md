@@ -11,8 +11,6 @@ The objective of the workshop is to get some theoretical and practical overview 
   * Akka internals
   * Testing actors
   * Fault tolerance
-  * *(optionally)* [Reactive Manifesto](http://www.reactivemanifesto.org/) and microservices
-  * *(optionally)* Overview of more advanced components and features  (persistence and remoting)
 
 ## Prerequisites
   * Familiarity with Scala syntax. See weeks 1 & 2 of [Functional Programming Principles in Scala](https://www.coursera.org/course/progfun).
@@ -80,22 +78,22 @@ Exercise: implement [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/wo
   * Thread analysis using `jvisualvm`
   * Dispatchers in Akka
   * Naming actors
-  * `PoisonPill`
   * Worker actors using `RoundRobinPool`
   
 Exercise: fix [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop/akka/movies/HotOrNotAsyncApp.scala), [MovieMetadataParser.scala](src/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParser.scala) and [SessionHost.scala](src/main/scala/com/michalplachta/workshop/akka/movies/SessionHost.scala)
   
 ### Testing actors
-  * Actors are accidental complexity 
+  * Actors are accidental complexity
   * Unit testing using `scalatest`
   * `WordSpec` flavor 
   * `Matchers`
+  * Making the code testable using parametrized `Props`
+  * `sealed trait`
   * Asynchronous integration testing using `TestKit` and `scalatest`
   * `WordSpecLike` flavor
   * `BeforeAndAfterAll`
   * Asserting using `expectMsg` and `ImplicitSender`
   * Asserting using `expectMsgPF`
-  * Making the code testable using parametrized `Props`
   
  Exercise: implement [MovieSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieSpec.scala), [MovieMetadataParserSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParserSpec.scala) and [SessionHostSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/SessionHostSpec.scala)
 

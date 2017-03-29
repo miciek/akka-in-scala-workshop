@@ -44,8 +44,10 @@ class SessionHost(parseMovieMetadataResource: String ⇒ List[Movie]) extends Ac
 
 object SessionHost {
   case class SpawnSession(previousWinner: Option[Movie])
-  case class Session(movieA: Movie, movieB: Movie)
-  case object CannotSpawnSession
+  sealed trait SessionSpawnResult
+  case class Session(movieA: Movie, movieB: Movie) extends SessionSpawnResult
+  case object CannotSpawnSession extends SessionSpawnResult
 
-  def props(parseMovieMetadataResource: String ⇒ List[Movie]): Props = Props(classOf[SessionHost], parseMovieMetadataResource)
+  def props(parseMovieMetadataResource: String ⇒ List[Movie]): Props =
+    Props(classOf[SessionHost], parseMovieMetadataResource)
 }

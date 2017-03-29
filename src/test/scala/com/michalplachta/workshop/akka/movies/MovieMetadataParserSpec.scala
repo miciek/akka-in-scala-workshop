@@ -1,20 +1,20 @@
 package com.michalplachta.workshop.akka.movies
 
 import akka.actor.ActorSystem
-import akka.testkit.{ImplicitSender, TestKit}
-import com.michalplachta.workshop.akka.movies.MovieMetadataParser.{Parse, ParsedMovies}
-import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
+import akka.testkit.{ ImplicitSender, TestKit }
+import com.michalplachta.workshop.akka.movies.MovieMetadataParser.{ Parse, ParsedMovies }
+import org.scalatest.{ BeforeAndAfterAll, Matchers, WordSpecLike }
 
 class MovieMetadataParserSpec extends TestKit(ActorSystem("MovieMetadataParser"))
-  with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll {
+    with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll {
 
   val matrix = Movie("Matrix", Some(10.0))
   val lionKing = Movie("Lion King", Some(10.0))
 
   def mockedParseMovieMetadata(resourceName: String): List[Movie] = resourceName match {
-    case "justMatrix" => List(matrix)
-    case "matrixAndLionKing" => List(matrix, lionKing)
-    case _ => List.empty
+    case "justMatrix"        ⇒ List(matrix)
+    case "matrixAndLionKing" ⇒ List(matrix, lionKing)
+    case _                   ⇒ List.empty
   }
 
   "MovieMetadataParser" should {

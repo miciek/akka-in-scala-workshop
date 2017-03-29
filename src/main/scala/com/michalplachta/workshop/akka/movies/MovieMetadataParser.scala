@@ -21,5 +21,6 @@ object MovieMetadataParser {
   case class Parse(resourceName: String)
   case class ParsedMovies(newMovies: List[Movie])
 
-  def props(parse: String ⇒ List[Movie]): Props = Props(classOf[MovieMetadataParser], parse).withDispatcher("blocking-io-dispatcher")
+  def props(parse: String ⇒ List[Movie]): Props =
+    Props(classOf[MovieMetadataParser], parse).withDispatcher("blocking-io-dispatcher")
 }
