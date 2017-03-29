@@ -95,7 +95,7 @@ Exercise: fix [HotOrNotAsyncApp.scala](src/main/scala/com/michalplachta/workshop
   * Asserting using `expectMsg` and `ImplicitSender`
   * Asserting using `expectMsgPF`
   
- Exercise: implement [MovieSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieSpec.scala), [MovieMetadataParserSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParserSpec.scala) and [SessionHostSpec.scala](test/main/scala/com/michalplachta/workshop/akka/movies/SessionHostSpec.scala)
+ Exercise: implement [MovieSpec.scala](src/test/scala/com/michalplachta/workshop/akka/movies/MovieSpec.scala), [MovieMetadataParserSpec.scala](src/test/scala/com/michalplachta/workshop/akka/movies/MovieMetadataParserSpec.scala) and [SessionHostSpec.scala](src/test/scala/com/michalplachta/workshop/akka/movies/SessionHostSpec.scala)
 
 ### Fault tolerance
   * What happens when `child` throws a `Throwable`?
